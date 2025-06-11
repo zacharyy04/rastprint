@@ -1,6 +1,6 @@
 package Controller;
 
-import engine.observer.EngineObserver;
+import Engine.observer.EngineObserver;
 import engine.observer.EngineEvent;
 
 public class NotificationListener implements EngineObserver {
