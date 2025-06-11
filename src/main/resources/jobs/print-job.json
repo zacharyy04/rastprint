@@ -1,0 +1,10 @@
+{
+  "command": "print_job",
+  "job_id": "job_0001",
+  "paper_format": "A4",
+  "orientation": "portrait",
+  "copies": 1,
+  "color_mode": "color",
+  "quality": "high",
+  "bitmap_buffer_path": "resources/jobs/job_0001_image_buffer.bin"
+}
