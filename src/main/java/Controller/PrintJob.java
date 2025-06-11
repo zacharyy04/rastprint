@@ -1,6 +1,6 @@
 package Controller;
 
-import model.PrintParameter;
+import model.PrintParameters;
 import model.PrintJobStatus;
 import java.util.UUID;
 

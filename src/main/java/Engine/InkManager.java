@@ -17,7 +17,7 @@ public class InkManager {
         printHeads.put("black", new PrintHead("black", 8.0));
     }
 
-    public void consume(CMYKPixel pixel, PrintParameters quality) {
+    public void consume(CMYKPixel pixel, PrintQuality quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
             case STANDARD -> 0.75;

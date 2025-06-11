@@ -34,7 +34,7 @@ public class ImageProcessor {
         double m = (k == 1.0) ? 0.0 : (1.0 - gp - k) / (1.0 - k);
         double y = (k == 1.0) ? 0.0 : (1.0 - bp - k) / (1.0 - k);
 
-        if (params.getColorMode() == PrintParameters.ColorMode.GRAYSCALE) {
+        if (params.getColorMode() == model.Enums.ColorMode.GRAYSCALE) {
             // Mettre uniquement dans K le niveau de gris
             double gray = (r + g + b) / 3.0 / 255.0;
             return new CMYKPixel(0.0, 0.0, 0.0, 1.0 - gray);
