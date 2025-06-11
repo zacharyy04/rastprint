@@ -1,6 +1,7 @@
 package Controller;
 
 import model.CMYKPixel;
+import model.Enums;
 import model.PrintParameters;
 
 public class PageComposer {
@@ -12,8 +13,8 @@ public class PageComposer {
 
     public static CMYKPixel[][] composePage(CMYKPixel[][] image, PrintParameters params) {
         int dpi = params.getDpi();
-        format = params.getPaperFormat(); // A4 ou A3
-        orientation = params.getOrientation(); // portrait ou paysage
+        Enums.PaperFormat format = params.getPaperFormat(); // A4 ou A3
+        Enums.Orientation orientation = params.getOrientation(); // portrait ou paysage
         String align = params.getAlign(); // top, bottom, left, right
 
         // Dimensions page (cm) avant rotation
