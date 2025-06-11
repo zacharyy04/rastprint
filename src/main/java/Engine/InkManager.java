@@ -47,7 +47,7 @@ public class InkManager {
         }
         return levels;
     }
-    public boolean hasSufficientInk(CMYKPixel[][] image, PrintParameters quality) {
+    public boolean hasSufficientInk(CMYKPixel[][] image, PrintQuality quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
             case STANDARD -> 0.75;
