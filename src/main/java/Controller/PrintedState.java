@@ -1,7 +1,4 @@
-package Controller.states;
-
-import Controller.PrintJob;
-import Controller.PrintJobState;
+package Controller;
 
 public class PrintedState implements PrintJobState {
     @Override

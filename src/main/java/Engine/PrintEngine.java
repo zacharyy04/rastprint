@@ -1,8 +1,7 @@
 package Engine;
 
-import Engine.observer.EngineEvent;
-import Engine.observer.EngineEvent.Type;
-import Engine.observer.JobMonitor;
+import Engine.EngineEvent.Type;
+import Engine.JobMonitor;
 import model.CMYKPixel;
 import model.Enums.PrintQuality;
 import Controller.PrintJob;

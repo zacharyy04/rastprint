@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import model.CMYKPixel;
 import model.PrintParameters;
-import model.Enums;
-import model.PrintParameters;
+import model.Enums.PrintQuality;
 
 public class InkManager {
     private final Map<String, PrintHead> printHeads;
@@ -17,6 +16,12 @@ public class InkManager {
         printHeads.put("yellow", new PrintHead("yellow", 8.0));
         printHeads.put("black", new PrintHead("black", 8.0));
     }
+
+
+    public double getLevel(String color) {
+        return printHeads.get(color).getInkLevel();
+    }
+
 
     public void consume(CMYKPixel pixel, PrintQuality quality) {
         double multiplier = switch (quality) {

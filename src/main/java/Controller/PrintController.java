@@ -1,6 +1,6 @@
 package Controller;
 
-import Engine.observer.EngineEvent;
+import Engine.EngineEvent;
 import model.PrintParameters;
 
 public class PrintController {
