@@ -1,6 +1,7 @@
 package Controller;
 
 import Engine.observer.EngineEvent;
+import model.PrintParameters;
 
 public class PrintController {
     private final JobQueueManager queueManager;

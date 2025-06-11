@@ -21,7 +21,7 @@ public class PrintEngine {
 
     public PrintEngine(JobMonitor jobMonitor) {
         this.inkManager = new InkManager();
-        this.paperTray = new PaperTray(100); // bac rempli avec 100 feuilles
+        this.paperTray = new PaperTray(); // bac rempli avec 100 feuilles
         this.hardwareSimulator = new HardwareSimulator();
         this.jobMonitor = jobMonitor;
     }

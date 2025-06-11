@@ -5,6 +5,7 @@ import java.util.Map;
 import model.CMYKPixel;
 import model.PrintParameters;
 import model.Enums;
+import model.PrintParameters;
 
 public class InkManager {
     private final Map<String, PrintHead> printHeads;
