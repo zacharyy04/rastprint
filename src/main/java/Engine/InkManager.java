@@ -3,7 +3,8 @@ package Engine;
 import java.util.HashMap;
 import java.util.Map;
 import model.CMYKPixel;
-import model.PrintQuality;
+import model.PrintParameters;
+import model.Enums;
 
 public class InkManager {
     private final Map<String, PrintHead> printHeads;
@@ -16,7 +17,7 @@ public class InkManager {
         printHeads.put("black", new PrintHead("black", 8.0));
     }
 
-    public void consume(CMYKPixel pixel, PrintQuality quality) {
+    public void consume(CMYKPixel pixel, PrintParameters quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
             case STANDARD -> 0.75;
@@ -40,4 +41,31 @@ public class InkManager {
         }
         return levels;
     }
+    public boolean hasSufficientInk(CMYKPixel[][] image, PrintParameters quality) {
+        double multiplier = switch (quality) {
+            case HIGH -> 1.0;
+            case STANDARD -> 0.75;
+            case DRAFT -> 0.5;
+        };
+
+        double neededC = 0;
+        double neededM = 0;
+        double neededY = 0;
+        double neededK = 0;
+
+        for (CMYKPixel[] row : image) {
+            for (CMYKPixel pixel : row) {
+                neededC += pixel.getC() * multiplier;
+                neededM += pixel.getM() * multiplier;
+                neededY += pixel.getY() * multiplier;
+                neededK += pixel.getK() * multiplier;
+            }
+        }
+
+        return neededC <= getLevel("cyan") * 1_000_000 &&
+                neededM <= getLevel("magenta") * 1_000_000 &&
+                neededY <= getLevel("yellow") * 1_000_000 &&
+                neededK <= getLevel("black") * 1_000_000;
+    }
+}
 

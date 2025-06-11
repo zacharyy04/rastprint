@@ -3,7 +3,6 @@ package shared;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.PrintJob;
-import model.PrintParameters;
 import model.Enums.*;
 
 import java.io.File;

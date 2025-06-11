@@ -1,7 +1,5 @@
 package Controller;
 
-import model.PrintParameters;
-
 public class PrintController {
     private final JobQueueManager queueManager;
 

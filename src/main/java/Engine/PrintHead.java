@@ -2,7 +2,7 @@ package Engine;
 
 public class PrintHead {
     private final String color;
-    private double inkLevel; // in milliliters
+    private double inkLevel; // en ml
 
     public PrintHead(String color, double initialLevel) {
         this.color = color;

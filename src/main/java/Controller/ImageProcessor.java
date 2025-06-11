@@ -1,7 +1,7 @@
 package Controller;
 
 import model.CMYKPixel;
-import model.PrintParameters;
+
 import java.awt.image.BufferedImage;
 
 public class ImageProcessor {
