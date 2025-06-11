@@ -1,9 +1,7 @@
 package Engine;
 
-import model.EngineEvent;
+import Engine.EngineEvent;
 
 public interface EngineObserver {
     void onEvent(EngineEvent event);
-
-    void onEvent(Engine.EngineEvent event);
 }
