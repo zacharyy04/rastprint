@@ -2,6 +2,7 @@ package shared;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import model.PrintParameters;
 
 import java.io.File;
 import java.io.IOException;
