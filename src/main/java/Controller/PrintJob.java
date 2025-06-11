@@ -13,7 +13,7 @@ public class PrintJob {
     public PrintJob(PrintParameters parameters) {
         this.jobId = "job_" + UUID.randomUUID();
         this.parameters = parameters;
-        this.state = new states.NewState();
+        this.state = new NewState();
         this.status = PrintJobStatus.INACTIVE;
     }
 

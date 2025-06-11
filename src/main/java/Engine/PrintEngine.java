@@ -1,13 +1,11 @@
 package Engine;
 
-import Engine.observer.EngineEvent;
-import Engine.observer.EngineEvent.Type;
-import Engine.observer.JobMonitor;
+import Engine.EngineEvent.Type;
+import Engine.JobMonitor;
 import model.CMYKPixel;
 import model.Enums.PrintQuality;
 import Controller.PrintJob;
 import model.PrintParameters;
-import model.Enums;
 import shared.BitmapBufferHandler;
 import shared.PrintDimensionHelper;
 
@@ -22,7 +20,7 @@ public class PrintEngine {
 
     public PrintEngine(JobMonitor jobMonitor) {
         this.inkManager = new InkManager();
-        this.paperTray = new PaperTray();
+        this.paperTray = new PaperTray(); // bac rempli avec 100 feuilles
         this.hardwareSimulator = new HardwareSimulator();
         this.jobMonitor = jobMonitor;
     }

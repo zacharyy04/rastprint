@@ -1,4 +1,4 @@
-package Engine.observer;
+package Engine;
 
 public interface EngineSubject {
     void registerObserver(EngineObserver observer);

@@ -1,4 +1,7 @@
-package Engine.observer;
+package Engine;
+
+import Engine.EngineEvent;
+import Engine.EngineSubject;
 
 import java.util.ArrayList;
 import java.util.List;

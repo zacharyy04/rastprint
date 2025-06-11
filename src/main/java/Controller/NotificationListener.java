@@ -1,9 +1,9 @@
 package Controller;
 
-import Engine.observer.EngineObserver;
-import Engine.observer.EngineEvent;
+import Engine.EngineObserver;
+import Engine.EngineEvent;
 
-public class NotificationListener implements EngineObserver {
+public abstract class NotificationListener implements EngineObserver {
 
     private final PrintController controller;
 
