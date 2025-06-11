@@ -7,6 +7,7 @@ import model.CMYKPixel;
 import model.Enums.PrintQuality;
 import Controller.PrintJob;
 import model.PrintParameters;
+import model.Enums;
 import shared.BitmapBufferHandler;
 import shared.PrintDimensionHelper;
 
@@ -21,7 +22,7 @@ public class PrintEngine {
 
     public PrintEngine(JobMonitor jobMonitor) {
         this.inkManager = new InkManager();
-        this.paperTray = new PaperTray(100); // bac rempli avec 100 feuilles
+        this.paperTray = new PaperTray();
         this.hardwareSimulator = new HardwareSimulator();
         this.jobMonitor = jobMonitor;
     }

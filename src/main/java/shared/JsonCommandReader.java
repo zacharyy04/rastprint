@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.PrintJob;
 import model.Enums.*;
+import model.PrintParameters;
 
 import java.io.File;
 import java.io.IOException;

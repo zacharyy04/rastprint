@@ -1,7 +1,7 @@
 package Engine;
 
 public class PaperTray {
-    private int sheets = 50;
+    private int sheets = 500;
 
     public boolean hasPaper() {
         return sheets > 0;

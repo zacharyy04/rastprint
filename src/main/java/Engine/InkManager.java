@@ -6,6 +6,8 @@ import model.CMYKPixel;
 import model.PrintParameters;
 import model.Enums;
 
+import static model.Enums.PrintQuality.HIGH;
+
 public class InkManager {
     private final Map<String, PrintHead> printHeads;
 
@@ -17,7 +19,7 @@ public class InkManager {
         printHeads.put("black", new PrintHead("black", 8.0));
     }
 
-    public void consume(CMYKPixel pixel, PrintQuality quality) {
+    public void consume(CMYKPixel pixel, Enums.PrintQuality quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
             case STANDARD -> 0.75;
@@ -41,7 +43,11 @@ public class InkManager {
         }
         return levels;
     }
-    public boolean hasSufficientInk(CMYKPixel[][] image, PrintParameters quality) {
+    private double getLevel(String color) {
+        PrintHead head = printHeads.get(color);
+        return head != null ? head.getInkLevel() : 0.0;
+    }
+    public boolean hasSufficientInk(CMYKPixel[][] image, Enums.PrintQuality quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
             case STANDARD -> 0.75;
@@ -62,7 +68,7 @@ public class InkManager {
             }
         }
 
-        return neededC <= getLevel("cyan") * 1_000_000 &&
+        return  neededC <= getLevel("cyan") * 1_000_000 &&
                 neededM <= getLevel("magenta") * 1_000_000 &&
                 neededY <= getLevel("yellow") * 1_000_000 &&
                 neededK <= getLevel("black") * 1_000_000;

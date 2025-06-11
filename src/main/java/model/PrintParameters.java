@@ -10,7 +10,7 @@ public class PrintParameters {
     private PrintQuality quality;
     private Alignment alignment;
     private int imagesPerPage;
-    private String bufferPath;  // chemin du fichier binaire à imprimer
+    private String bufferPath;
 
     // Getters et Setters
     public PaperFormat getPaperFormat() { return paperFormat; }
