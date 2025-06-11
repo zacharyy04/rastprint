@@ -22,6 +22,9 @@ public class JsonCommandWriter {
         root.put("color_mode", params.getColorMode().name().toLowerCase());
         root.put("quality", params.getQuality().name().toLowerCase());
         root.put("bitmap_buffer_path", bufferPath);
+        root.put("width", params.getWidth());
+        root.put("height", params.getHeight());
+
 
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(outputPath), root);
     }

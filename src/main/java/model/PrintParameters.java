@@ -11,6 +11,18 @@ public class PrintParameters {
     private Alignment alignment;
     private int imagesPerPage;
     private String bufferPath;
+    private String align;
+    private int dpi;
+
+    private int width;
+    private int height;
+
+    public int getWidth() { return width; }
+    public void setWidth(int width) { this.width = width; }
+
+    public int getHeight() { return height; }
+    public void setHeight(int height) { this.height = height; }
+
 
     // Getters et Setters
     public PaperFormat getPaperFormat() { return paperFormat; }
@@ -36,4 +48,20 @@ public class PrintParameters {
 
     public String getBufferPath() { return bufferPath; }
     public void setBufferPath(String bufferPath) { this.bufferPath = bufferPath; }
+
+    public int getDpi() {
+        return dpi;
+    }
+
+    public void setDpi(int dpi) {
+        this.dpi = dpi;
+    }
+
+    public String getAlign() {
+        return align;
+    }
+
+    public void setAlign(String align) {
+        this.align = align;
+    }
 }

@@ -39,11 +39,10 @@ public class PrintEngine {
                 case HIGH -> 600;
             };
 
-            int[] dims = PrintDimensionHelper.getPixelDimensions(params.getPaperFormat(), params.getOrientation(), dpi);
-            int width = dims[0];
-            int height = dims[1];
-
+            int width = params.getWidth();   // ✅ remplacer
+            int height = params.getHeight();
             CMYKPixel[][] image = BitmapBufferHandler.readBuffer(path, width, height);
+
 
             if (!inkManager.hasSufficientInk(image, quality)) {
                 jobMonitor.notifyObservers(new EngineEvent(

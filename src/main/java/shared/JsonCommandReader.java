@@ -25,6 +25,9 @@ public class JsonCommandReader {
         params.setColorMode(ColorMode.valueOf(root.get("color_mode").asText().toUpperCase()));
         params.setQuality(PrintQuality.valueOf(root.get("quality").asText().toUpperCase()));
         params.setBufferPath(bufferPath);
+        params.setWidth(root.get("width").asInt());
+        params.setHeight(root.get("height").asInt());
+
 
         return new PrintJob(jobId, params);
     }

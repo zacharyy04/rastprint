@@ -3,7 +3,7 @@ package Controller;
 import Engine.EngineObserver;
 import Engine.EngineEvent;
 
-public abstract class NotificationListener implements EngineObserver {
+public class NotificationListener implements EngineObserver {
 
     private final PrintController controller;
 
