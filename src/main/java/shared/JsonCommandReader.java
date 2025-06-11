@@ -27,6 +27,7 @@ public class JsonCommandReader {
         params.setBufferPath(bufferPath);
         params.setWidth(root.get("width").asInt());
         params.setHeight(root.get("height").asInt());
+        params.setAlign(root.get("align").asText());
 
 
         return new PrintJob(jobId, params);

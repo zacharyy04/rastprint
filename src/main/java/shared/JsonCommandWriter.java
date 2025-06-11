@@ -24,6 +24,7 @@ public class JsonCommandWriter {
         root.put("bitmap_buffer_path", bufferPath);
         root.put("width", params.getWidth());
         root.put("height", params.getHeight());
+        root.put("align", params.getAlign());
 
 
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(outputPath), root);
