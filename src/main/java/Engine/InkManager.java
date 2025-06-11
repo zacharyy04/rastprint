@@ -1,27 +1,22 @@
 package Engine;
 
-import java.util.HashMap;
-import java.util.Map;
 import model.CMYKPixel;
-import model.PrintParameters;
 import model.Enums.PrintQuality;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class InkManager {
+
     private final Map<String, PrintHead> printHeads;
 
     public InkManager() {
-        printHeads = new HashMap<>();
+        this.printHeads = new HashMap<>();
         printHeads.put("cyan", new PrintHead("cyan", 8.0));
         printHeads.put("magenta", new PrintHead("magenta", 8.0));
         printHeads.put("yellow", new PrintHead("yellow", 8.0));
         printHeads.put("black", new PrintHead("black", 8.0));
     }
-
-
-    public double getLevel(String color) {
-        return printHeads.get(color).getInkLevel();
-    }
-
 
     public void consume(CMYKPixel pixel, PrintQuality quality) {
         double multiplier = switch (quality) {
@@ -30,23 +25,41 @@ public class InkManager {
             case DRAFT -> 0.5;
         };
 
-        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 1e-3);
-        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 1e-3);
-        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 1e-3);
-        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 1e-3);
+        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 1_000_000);
+        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 1_000_000);
+        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 1_000_000);
+        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 1_000_000);
     }
 
     public boolean isAnyEmpty() {
         return printHeads.values().stream().anyMatch(PrintHead::isEmpty);
     }
 
-    public Map<String, Double> getLevels() {
-        Map<String, Double> levels = new HashMap<>();
-        for (Map.Entry<String, PrintHead> entry : printHeads.entrySet()) {
-            levels.put(entry.getKey(), entry.getValue().getInkLevel());
-        }
-        return levels;
+    public boolean isLow(String color) {
+        return getLevel(color) < 1.0;
     }
+
+    public double getLevel(String color) {
+        return printHeads.get(color).getInkLevel();
+    }
+
+    public Map<String, Double> getInkUsage() {
+        Map<String, Double> usage = new HashMap<>();
+        for (Map.Entry<String, PrintHead> entry : printHeads.entrySet()) {
+            String color = entry.getKey();
+            double used = 8.0 - entry.getValue().getInkLevel(); // 8.0 ml = plein
+            usage.put(color, used);
+        }
+        return usage;
+    }
+
+    public java.util.List<String> getLowColors() {
+        return printHeads.entrySet().stream()
+                .filter(e -> e.getValue().isLow())
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
     public boolean hasSufficientInk(CMYKPixel[][] image, PrintQuality quality) {
         double multiplier = switch (quality) {
             case HIGH -> 1.0;
@@ -54,11 +67,7 @@ public class InkManager {
             case DRAFT -> 0.5;
         };
 
-        double neededC = 0;
-        double neededM = 0;
-        double neededY = 0;
-        double neededK = 0;
-
+        double neededC = 0, neededM = 0, neededY = 0, neededK = 0;
         for (CMYKPixel[] row : image) {
             for (CMYKPixel pixel : row) {
                 neededC += pixel.getC() * multiplier;
@@ -74,4 +83,3 @@ public class InkManager {
                 neededK <= getLevel("black") * 1_000_000;
     }
 }
-
