@@ -2,7 +2,7 @@ package shared;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.PrintJob;
+import Controller.PrintJob;
 import model.Enums.*;
 import model.PrintParameters;
 

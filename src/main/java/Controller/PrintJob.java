@@ -17,6 +17,14 @@ public class PrintJob {
         this.status = PrintJobStatus.INACTIVE;
     }
 
+    public PrintJob(String jobId, PrintParameters params) {
+        this.jobId = jobId;
+        this.parameters = params;
+        this.state = new NewState();
+        this.status = PrintJobStatus.INACTIVE;
+    }
+
+
     public String getJobId() {
         return jobId;
     }
