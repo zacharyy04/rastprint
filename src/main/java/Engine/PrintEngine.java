@@ -46,7 +46,7 @@
                     case HIGH -> 600;
                 };
 
-                int width = params.getWidth();   // ✅ remplacer
+                int width = params.getWidth();
                 int height = params.getHeight();
                 CMYKPixel[][] rawImage = BitmapBufferHandler.readBuffer(path, width, height);
                 CMYKPixel[][] image = imageProcessor.applyLayout(params, rawImage);
