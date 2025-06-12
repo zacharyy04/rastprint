@@ -18,14 +18,15 @@ public class PageComposer {
         String align = params.getAlign(); // top, bottom, left, right
 
         // Dimensions page (cm) avant rotation
-        double widthCm = format.equalsIgnoreCase("A4") ? 21.0 : 29.7;
-        double heightCm = format.equalsIgnoreCase("A4") ? 29.7 : 42.0;
+        double widthCm = format == Enums.PaperFormat.A4 ? 21.0 : 29.7;
+        double heightCm = format == Enums.PaperFormat.A4 ? 29.7 : 42.0;
 
-        if (orientation.equalsIgnoreCase("paysage")) {
+        if (orientation == Enums.Orientation.LANDSCAPE) {
             double temp = widthCm;
             widthCm = heightCm;
             heightCm = temp;
         }
+
 
         int pageWidthPx = (int) Math.round(widthCm * dpi / 2.54);
         int pageHeightPx = (int) Math.round(heightCm * dpi / 2.54);
