@@ -74,8 +74,9 @@
                     for (CMYKPixel pixel : row) {
                         inkManager.consume(pixel, quality);
                     }
-                    hardwareSimulator.simulateLineDelay(quality);
                 }
+                hardwareSimulator.simulateLineDelay(quality);
+
 
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_COMPLETED, jobId, inkManager.getInkUsage()));
 

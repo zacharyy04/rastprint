@@ -6,9 +6,9 @@ public class HardwareSimulator {
     public void simulateLineDelay(PrintQuality quality) {
         try {
             long delay = switch (quality) {
-                case DRAFT -> 1L;     // 1 ms par ligne
-                case STANDARD -> 3L;  // 3 ms
-                case HIGH -> 5L;      // 5 ms
+                case DRAFT -> 1000;     // 1 ms par ligne
+                case STANDARD -> 3000;  // 3 ms
+                case HIGH -> 5000;      // 5 ms
             };
             Thread.sleep(delay);
         } catch (InterruptedException ignored) {
