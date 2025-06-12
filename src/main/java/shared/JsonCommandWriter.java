@@ -9,7 +9,10 @@ import java.io.IOException;
 
 public class JsonCommandWriter {
 
-    public static void writePrintJobFile(String jobId, PrintParameters params, String bufferPath, String outputPath)
+    public static void writePrintJobFile(String jobId,
+                                         PrintParameters params,
+                                         String bufferPath,
+                                         String outputPath)
             throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode root = mapper.createObjectNode();
