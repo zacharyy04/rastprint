@@ -16,7 +16,10 @@ public class JobMonitor implements EngineSubject {
 
     @Override
     public void registerObserver(EngineObserver observer) {
-        observers.add(observer);
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        } else {
+        }
     }
 
     @Override

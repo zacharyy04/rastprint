@@ -1,0 +1,11 @@
+{
+  "job_id": "job_20250612_135814",
+  "ink_used": {
+    "magenta": 0,
+    "yellow": 0,
+    "black": 3.375077994860476E-10,
+    "cyan": 0
+  },
+  "event": "job_completed",
+  "timestamp": "2025-06-12T13:58:36.784662+02:00"
+}
