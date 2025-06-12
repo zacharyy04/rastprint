@@ -79,7 +79,9 @@
 
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_COMPLETED, jobId, inkManager.getInkUsage()));
 
-                FinalPageRenderer.renderToPNG(image, params, "src/main/resources/output/impression_finale.png");
+                String outputPath = "src/main/resources/output/" + jobId + ".png";
+                FinalPageRenderer.renderToPNG(image, params, outputPath);
+
 
             } catch (Exception e) {
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_ERROR, jobId, e.getMessage(), null, 0));
