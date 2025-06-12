@@ -19,6 +19,8 @@ public class TestPartTwo {
             // 2. Instancier les composants
             JobMonitor monitor = new JobMonitor();
             PrintEngine engine = new PrintEngine(monitor);
+            engine.getInkManager().resetInk();
+
             PrintController controller = new PrintController(engine, monitor);
             NotificationListener listener = new NotificationListener(controller);
 
