@@ -5,7 +5,7 @@ import model.Enums.*;
 public class PrintDimensionHelper {
 
     public static int[] getPixelDimensions(PaperFormat format, Orientation orientation, int dpi) {
-        // Format en pouces (source officielle)
+        // Format en pouces
         double widthInch = (format == PaperFormat.A4) ? 8.27 : 11.69;
         double heightInch = (format == PaperFormat.A4) ? 11.69 : 16.54;
 

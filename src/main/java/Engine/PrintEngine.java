@@ -39,7 +39,7 @@ public class PrintEngine {
                 case HIGH -> 600;
             };
 
-            int width = params.getWidth();   // ✅ remplacer
+            int width = params.getWidth();
             int height = params.getHeight();
             CMYKPixel[][] image = BitmapBufferHandler.readBuffer(path, width, height);
 

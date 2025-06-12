@@ -8,9 +8,8 @@ import java.io.IOException;
 
 public class BitmapBufferHandler {
 
-    /**
-     * Écrit un tableau 2D de pixels CMYK dans un fichier binaire (ligne par ligne, 4 octets/pixel)
-     */
+    //Écrit un tableau 2D de pixels CMYK dans un fichier binaire (ligne par ligne, 4 octets/pixel)
+
     public static void writeBuffer(CMYKPixel[][] data, String path) throws IOException {
         try (FileOutputStream out = new FileOutputStream(path)) {
             for (CMYKPixel[] row : data) {
@@ -24,9 +23,8 @@ public class BitmapBufferHandler {
         }
     }
 
-    /**
-     * Lit un fichier binaire contenant des pixels CMYK (4 octets/pixel) et retourne un tableau 2D
-     */
+    //Lit le fichier binaire contenant des pixels CMYK (4 octets/pixel) et retourne un tableau 2D
+
     public static CMYKPixel[][] readBuffer(String path, int width, int height) throws IOException {
         CMYKPixel[][] data = new CMYKPixel[height][width];
         try (FileInputStream in = new FileInputStream(path)) {

@@ -16,7 +16,7 @@ public class HardwareSimulator {
         }
     }
     public boolean simulatePaperJamRisk() {
-        // Placeholder : 1% de risque de bourrage
+        // simulation erreur
         return Math.random() < 0.01;
     }
 }
