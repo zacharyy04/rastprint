@@ -14,5 +14,11 @@ public class PaperTray {
     public int getRemainingSheets() {
         return sheets;
     }
+
+    public boolean hasEnoughPaper(int copies) {
+        return sheets >= copies;
+    }
+
 }
+
 

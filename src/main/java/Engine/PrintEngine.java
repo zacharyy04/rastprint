@@ -9,6 +9,7 @@
     import shared.PrintDimensionHelper;
 
     import java.io.File;
+    import java.util.Map;
     import Controller.ImageProcessor; // si ce n’est pas encore fait
 
 
@@ -35,6 +36,8 @@
             PrintParameters params = job.getParameters();
             String path = params.getBufferPath();
             PrintQuality quality = params.getQuality();
+            int copies = params.getNbCopies();
+
 
             try {
                 File file = new File(path);
@@ -51,13 +54,27 @@
                 CMYKPixel[][] rawImage = BitmapBufferHandler.readBuffer(path, width, height);
                 CMYKPixel[][] image = imageProcessor.applyLayout(params, rawImage);
 
-                if (!inkManager.hasSufficientInk(image, quality)) {
+                Map<String, Double> needed = inkManager.estimateInkUsage(image, quality);
+
+                // Vérification du niveau pour toutes les copies
+                boolean enough = needed.entrySet().stream().allMatch(entry -> {
+                    String color = entry.getKey();
+                    double volumeNeeded = entry.getValue() * copies;
+                    double available = inkManager.getLevel(color) * 1_000_000;
+                    return volumeNeeded <= available;
+                });
+
+                if (!enough) {
                     jobMonitor.notifyObservers(new EngineEvent(
-                            EngineEvent.Type.JOB_ERROR, jobId,
-                            "Niveau d'encre insuffisant pour imprimer l'image.", null, 0
+                            EngineEvent.Type.JOB_ERROR,
+                            jobId,
+                            "Encre insuffisante pour " + copies + " copies.",
+                            null,
+                            0
                     ));
                     return;
                 }
+
 
                 if (!paperTray.hasPaper()) {
                     jobMonitor.notifyObservers(new EngineEvent(
@@ -67,10 +84,21 @@
                     return;
                 }
 
-                paperTray.consumeSheet();
+                if (!paperTray.hasEnoughPaper(copies)) {
+                    jobMonitor.notifyObservers(new EngineEvent(
+                            EngineEvent.Type.JOB_ERROR,
+                            jobId,
+                            "Pas assez de papier dans le bac pour " + copies + " copies.",
+                            null,
+                            0
+                    ));
+                    return;
+                }
+
+
+
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_STARTED, jobId));
 
-                int copies = params.getNbCopies();
                 for (int copy = 1; copy <= copies; copy++) {
                     System.out.println("🖨️ Impression de la copie " + copy + " / " + copies);
                     for (CMYKPixel[] row : image) {
@@ -112,6 +140,10 @@
         }
         public InkManager getInkManager() {
             return inkManager;
+        }
+
+        public PaperTray getPaperTray() {
+            return paperTray;
         }
 
 

@@ -25,10 +25,10 @@ public class InkManager {
             case DRAFT -> 0.5;
         };
 
-        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 0.0000000000001);
-        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 0.0000000000001);
-        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 0.0000000000001);
-        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 0.0000000000001);
+        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 0.00000001);
+        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 0.00000001);
+        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 0.00000001);
+        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 0.00000001);
     }
 
     public boolean isAnyEmpty() {
@@ -70,10 +70,10 @@ public class InkManager {
         double neededC = 0, neededM = 0, neededY = 0, neededK = 0;
         for (CMYKPixel[] row : image) {
             for (CMYKPixel pixel : row) {
-                neededC += pixel.getC() * multiplier;
-                neededM += pixel.getM() * multiplier;
-                neededY += pixel.getY() * multiplier;
-                neededK += pixel.getK() * multiplier;
+                neededC += pixel.getC() * multiplier * 1e-6;
+                neededM += pixel.getM() * multiplier * 1e-6;
+                neededY += pixel.getY() * multiplier * 1e-6;
+                neededK += pixel.getK() * multiplier * 1e-6;
             }
         }
 
@@ -89,5 +89,40 @@ public class InkManager {
         }
     }
 
+
+    public Map<String, Double> getLevels() {
+        Map<String, Double> usage = new HashMap<>();
+        for (Map.Entry<String, PrintHead> entry : printHeads.entrySet()) {
+            String color = entry.getKey();
+            double volume = entry.getValue().getInkLevel();
+            usage.put(color, volume);
+        }
+        return usage;
+    }
+
+    public Map<String, Double> estimateInkUsage(CMYKPixel[][] image, PrintQuality quality) {
+        double multiplier = switch (quality) {
+            case HIGH -> 1.0;
+            case STANDARD -> 0.75;
+            case DRAFT -> 0.5;
+        };
+
+        double c = 0, m = 0, y = 0, k = 0;
+        for (CMYKPixel[] row : image) {
+            for (CMYKPixel pixel : row) {
+                c += pixel.getC() * multiplier * 1e-6;
+                m += pixel.getM() * multiplier * 1e-6;
+                y += pixel.getY() * multiplier * 1e-6;
+                k += pixel.getK() * multiplier * 1e-6;
+            }
+        }
+
+        Map<String, Double> estimated = new HashMap<>();
+        estimated.put("cyan", c);
+        estimated.put("magenta", m);
+        estimated.put("yellow", y);
+        estimated.put("black", k);
+        return estimated;
+    }
 
 }
