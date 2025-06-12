@@ -9,6 +9,10 @@
     import shared.PrintDimensionHelper;
 
     import java.io.File;
+    import Controller.ImageProcessor; // si ce n’est pas encore fait
+
+
+
 
     public class PrintEngine {
 
@@ -16,12 +20,14 @@
         private final PaperTray paperTray;
         private final HardwareSimulator hardwareSimulator;
         private final JobMonitor jobMonitor;
+        private final ImageProcessor imageProcessor;
 
         public PrintEngine(JobMonitor jobMonitor) {
             this.inkManager = new InkManager();
             this.paperTray = new PaperTray(); // bac rempli
             this.hardwareSimulator = new HardwareSimulator();
             this.jobMonitor = jobMonitor;
+            this.imageProcessor = new ImageProcessor(); // ou injecté si tu préfères
         }
 
         public void startJob(PrintJob job) {
@@ -42,8 +48,8 @@
 
                 int width = params.getWidth();   // ✅ remplacer
                 int height = params.getHeight();
-                CMYKPixel[][] image = BitmapBufferHandler.readBuffer(path, width, height);
-
+                CMYKPixel[][] rawImage = BitmapBufferHandler.readBuffer(path, width, height);
+                CMYKPixel[][] image = imageProcessor.applyLayout(params, rawImage);
 
                 if (!inkManager.hasSufficientInk(image, quality)) {
                     jobMonitor.notifyObservers(new EngineEvent(
