@@ -28,4 +28,9 @@ public class PrintHead {
     public void consumeInk(double amount) {
         this.inkLevel = Math.max(0.0, inkLevel - amount);
     }
+
+    public void setInkLevel(double level) {
+        this.inkLevel = level;
+    }
+
 }

@@ -8,5 +8,6 @@
   "quality" : "standard",
   "bitmap_buffer_path" : "src/main/resources/jobs/job_test_buffer.bin",
   "width" : 100,
-  "height" : 100
+  "height" : 100,
+  "align" : null
 }

@@ -25,10 +25,10 @@ public class InkManager {
             case DRAFT -> 0.5;
         };
 
-        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 1_000_000);
-        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 1_000_000);
-        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 1_000_000);
-        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 1_000_000);
+        printHeads.get("cyan").consumeInk(pixel.getC() * multiplier * 0.0000000000001);
+        printHeads.get("magenta").consumeInk(pixel.getM() * multiplier * 0.0000000000001);
+        printHeads.get("yellow").consumeInk(pixel.getY() * multiplier * 0.0000000000001);
+        printHeads.get("black").consumeInk(pixel.getK() * multiplier * 0.0000000000001);
     }
 
     public boolean isAnyEmpty() {
@@ -82,4 +82,12 @@ public class InkManager {
                 neededY <= getLevel("yellow") * 1_000_000 &&
                 neededK <= getLevel("black") * 1_000_000;
     }
+
+    public void resetInk() {
+        for (PrintHead head : printHeads.values()) {
+            head.setInkLevel(8.0);
+        }
+    }
+
+
 }
