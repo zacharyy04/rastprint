@@ -24,16 +24,13 @@ public class ConsoleInterface {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            // 🆔 Job ID dynamique
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String jobId = "job_" + timestamp;
 
-            // 📸 Fichier image
             System.out.print("📂 Chemin de l'image à imprimer (PNG/JPG/TIFF) : ");
             String imagePath = scanner.nextLine().trim();
             BufferedImage image = ImageIO.read(new File(imagePath));
 
-            // 🧾 Paramètres
             PrintParameters params = new PrintParameters();
 
             params.setPaperFormat(askEnum(scanner, "Format papier (A4/A3) :", PaperFormat.class));
@@ -54,18 +51,15 @@ public class ConsoleInterface {
             params.setWidth(image.getWidth());
             params.setHeight(image.getHeight());
 
-            // 📁 Chemins
             String bufferPath = "src/main/resources/jobs/" + jobId + "_buffer.bin";
             String jsonPath = "src/main/resources/jobs/" + jobId + ".json";
             params.setBufferPath(bufferPath);
 
-            // 🎨 Traitement
             ImageProcessor processor = new ImageProcessor();
             CMYKPixel[][] cmyk = processor.convertToCMYK(image, params);
             BitmapBufferHandler.writeBuffer(cmyk, bufferPath);
             JsonCommandWriter.writePrintJobFile(jobId, params, bufferPath, jsonPath);
 
-            // 🖨️ Impression
             PrintJob job = JsonCommandReader.readPrintJob(jsonPath);
             JobMonitor monitor = new JobMonitor();
             PrintEngine engine = new PrintEngine(monitor);
