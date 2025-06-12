@@ -48,10 +48,6 @@ public class ImageProcessor {
 
     public CMYKPixel[][] applyLayout(PrintParameters params, CMYKPixel[][] source) {
 
-        if (params.getOrientation() == Enums.Orientation.LANDSCAPE) {
-            source = rotate90(source); // ⬅️ rotation si nécessaire
-        }
-
         int dpi = switch (params.getQuality()) {
             case DRAFT -> 150;
             case STANDARD -> 300;
@@ -61,6 +57,13 @@ public class ImageProcessor {
         // Dimensions en pouces : A4 = 8.27 × 11.69, A3 = 11.69 × 16.54
         double widthInch = params.getPaperFormat().equals("A3") ? 11.69 : 8.27;
         double heightInch = params.getPaperFormat().equals("A3") ? 16.54 : 11.69;
+
+        if (params.getOrientation() == Enums.Orientation.LANDSCAPE) {
+            source = rotate90(source);
+            double temp = widthInch;
+            widthInch = heightInch;
+            heightInch = temp;
+        }
 
         int pageWidth = (int) Math.round(widthInch * dpi);
         int pageHeight = (int) Math.round(heightInch * dpi);

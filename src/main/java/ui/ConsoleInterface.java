@@ -43,8 +43,12 @@ public class ConsoleInterface {
             System.out.print("Nombre de copies (1 à 50) : ");
             params.setNbCopies(scanner.nextInt());
             scanner.nextLine(); // flush
-            System.out.print("Nombre d’images par feuille (1, 2 ou 4) : ");
+            /*System.out.print("Nombre d’images par feuille (1, 2 ou 4) : ");
             params.setImagesPerPage(scanner.nextInt());
+            scanner.nextLine(); // flush
+            params.setAlignment(askEnum(scanner, "Alignement (TOP, BOTTOM, LEFT, RIGHT, CENTER) :", Alignment.class));
+             */
+
             scanner.nextLine(); // flush
 
             params.setWidth(image.getWidth());
