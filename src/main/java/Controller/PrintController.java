@@ -11,14 +11,13 @@ public class PrintController {
 
     public PrintController() {
         this.queueManager = new JobQueueManager();
-        this.engine = null; // inutile ici
+        this.engine = null;
     }
 
     public PrintController(PrintEngine engine, JobMonitor monitor) {
         this.queueManager = new JobQueueManager();
         this.engine = engine;
 
-        // Enregistrer ce contrôleur comme observateur du moteur
         monitor.registerObserver(new NotificationListener(this));
     }
 
