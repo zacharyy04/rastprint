@@ -53,7 +53,7 @@ public class mainprintconsole {
                 System.out.print("Nombre de copies (1-50): ");
                 params.setNbCopies(scanner.nextInt());
                 scanner.nextLine();
-                params.setImagesPerPage(1); // tu peux le rendre interactif plus tard
+                params.setImagesPerPage(1);
 
                 params.setWidth(image.getWidth());
                 params.setHeight(image.getHeight());
