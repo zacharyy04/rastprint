@@ -70,19 +70,24 @@
                 paperTray.consumeSheet();
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_STARTED, jobId));
 
-                for (CMYKPixel[] row : image) {
-                    for (CMYKPixel pixel : row) {
-                        inkManager.consume(pixel, quality);
+                int copies = params.getNbCopies();
+                for (int copy = 1; copy <= copies; copy++) {
+                    System.out.println("🖨️ Impression de la copie " + copy + " / " + copies);
+                    for (CMYKPixel[] row : image) {
+                        for (CMYKPixel pixel : row) {
+                            inkManager.consume(pixel, quality);
+                        }
                     }
-                }
-                hardwareSimulator.simulateLineDelay(quality);
+                    hardwareSimulator.simulateLineDelay(quality);
+                    paperTray.consumeSheet();
+
 
 
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_COMPLETED, jobId, inkManager.getInkUsage()));
 
-                String outputPath = "src/main/resources/output/" + jobId + ".png";
+                String outputPath = "src/main/resources/output/" + jobId + "_copy" + copy + ".png";
                 FinalPageRenderer.renderToPNG(image, params, outputPath);
-
+            }
 
             } catch (Exception e) {
                 jobMonitor.notifyObservers(new EngineEvent(EngineEvent.Type.JOB_ERROR, jobId, e.getMessage(), null, 0));

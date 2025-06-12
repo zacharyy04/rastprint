@@ -37,7 +37,7 @@ public class ConsoleInterface {
             PrintParameters params = new PrintParameters();
 
             params.setPaperFormat(askEnum(scanner, "Format papier (A4/A3) :", PaperFormat.class));
-            params.setOrientation(askEnum(scanner, "Orientation (PORTRAIT/PAYSAGE) :", Orientation.class));
+            params.setOrientation(askEnum(scanner, "Orientation (PORTRAIT/LANDSCAPE) :", Orientation.class));
             params.setColorMode(askEnum(scanner, "Mode couleur (COLOR/GRAYSCALE) :", ColorMode.class));
             params.setQuality(askEnum(scanner, "Qualité (DRAFT/STANDARD/HIGH) :", PrintQuality.class));
             System.out.print("Nombre de copies (1 à 50) : ");

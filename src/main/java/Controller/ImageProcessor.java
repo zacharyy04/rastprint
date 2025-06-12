@@ -1,6 +1,7 @@
 package Controller;
 
 import model.CMYKPixel;
+import model.Enums;
 import model.PrintParameters;
 
 
@@ -46,6 +47,11 @@ public class ImageProcessor {
     }
 
     public CMYKPixel[][] applyLayout(PrintParameters params, CMYKPixel[][] source) {
+
+        if (params.getOrientation() == Enums.Orientation.LANDSCAPE) {
+            source = rotate90(source); // ⬅️ rotation si nécessaire
+        }
+
         int dpi = switch (params.getQuality()) {
             case DRAFT -> 150;
             case STANDARD -> 300;
@@ -97,6 +103,20 @@ public class ImageProcessor {
         }
 
         return canvas;
+    }
+
+
+    public CMYKPixel[][] rotate90(CMYKPixel[][] input) {
+        int height = input.length;
+        int width = input[0].length;
+
+        CMYKPixel[][] rotated = new CMYKPixel[width][height];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                rotated[x][height - 1 - y] = input[y][x];
+            }
+        }
+        return rotated;
     }
 
 }
