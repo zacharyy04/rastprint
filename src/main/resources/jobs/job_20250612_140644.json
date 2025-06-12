@@ -1,0 +1,13 @@
+{
+  "command" : "print_job",
+  "job_id" : "job_20250612_140644",
+  "paper_format" : "A4",
+  "orientation" : "LANDSCAPE",
+  "copies" : 1,
+  "color_mode" : "color",
+  "quality" : "high",
+  "bitmap_buffer_path" : "src/main/resources/jobs/job_20250612_140644_buffer.bin",
+  "width" : 100,
+  "height" : 100,
+  "align" : null
+}

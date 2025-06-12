@@ -65,8 +65,8 @@ public class ConsoleInterface {
             PrintEngine engine = new PrintEngine(monitor);
             engine.getInkManager().resetInk();
             PrintController controller = new PrintController(engine, monitor);
-            NotificationListener listener = new NotificationListener(controller);
-            monitor.registerObserver(listener);
+            //NotificationListener listener = new NotificationListener(controller);
+            //monitor.registerObserver(listener);
 
             controller.submitJob(job);
 

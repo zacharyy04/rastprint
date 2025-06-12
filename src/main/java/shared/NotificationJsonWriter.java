@@ -17,9 +17,9 @@ public class NotificationJsonWriter {
             FileWriter writer = new FileWriter(NOTIFICATION_DIR + fileName);
             writer.write(jsonObject.toString(2)); // indent = 2
             writer.close();
-            System.out.println("📄 Notification JSON générée : " + fileName);
+            //System.out.println("Notification JSON générée : " + fileName);
         } catch (IOException e) {
-            System.err.println("❌ Erreur lors de l’écriture du fichier JSON : " + e.getMessage());
+            System.err.println("Erreur lors de l’écriture du fichier JSON : " + e.getMessage());
         }
     }
 }
