@@ -5,6 +5,7 @@ import model.Enums.PrintQuality;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Handler;
 
 /**
  * The {@code InkManager} class manages the ink levels for each color print head
@@ -189,4 +190,9 @@ public class InkManager {
         estimated.put("black", k);
         return estimated;
     }
+
+    public PrintHead getPrintHead(String color) {
+        return printHeads.get(color);
+    }
+
 }

@@ -19,6 +19,9 @@ public class PaperTray {
         return sheets >= copies;
     }
 
+    public void setSheets(int sheets) {
+        this.sheets = sheets;
+    }
 }
 
 
