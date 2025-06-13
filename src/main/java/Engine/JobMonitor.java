@@ -15,7 +15,6 @@ public class JobMonitor implements EngineSubject {
     public void registerObserver(EngineObserver observer) {
         if (!observers.contains(observer)) {
             observers.add(observer);
-        } else {
         }
     }
 
