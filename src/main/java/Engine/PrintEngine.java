@@ -17,7 +17,6 @@
      * The {@code PrintEngine} class manages the full lifecycle of a print job.
      * It is responsible for verifying resources (ink, paper), triggering ink consumption,
      * rendering the image, and sending updates to the {@link JobMonitor}.
-     *
      * It simulates a raster-based print system, including multi-copy printing and hardware interaction.
      */
     public class PrintEngine {

@@ -4,8 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import model.Enums.Orientation;
-import model.Enums.PaperFormat;
 import model.PrintParameters;
 import model.CMYKPixel;
 
